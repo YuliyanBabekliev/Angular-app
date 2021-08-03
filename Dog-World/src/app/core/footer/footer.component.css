@@ -1,0 +1,21 @@
+footer{
+    display: flex;
+    background-color: rgb(236, 236, 236);
+    color: rgb(60,60,60);
+    padding-top: 30px;
+    padding-bottom: 30px;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: auto;
+    font-weight: bold;
+}
+
+.copyright{
+    margin-left: 30px;
+    font-weight: bold;
+}
+
+.made-by{
+    margin-right: 30px;
+    font-weight: bold;
+}

@@ -1,0 +1,142 @@
+header{
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(236, 236, 236);
+    align-items: center;
+    color: white;
+}
+
+.nav-menu{
+display: flex;
+justify-content: space-between;
+background-color: rgb(236, 236, 236);
+align-items: center;
+color: white;
+}
+
+.not-logged{
+    display: flex;
+}
+
+.menu-with-buttons{
+    display: flex;
+    margin-left: 200px;
+}
+
+
+.menu-with-buttons li:nth-child(3)> a{
+    margin-left: 30px;
+}
+
+
+
+header ul{
+    display: flex;
+}
+
+.img-container img{
+    width: 100px;
+    transition-delay: 0.04s;
+    transition-duration: 0.05s;
+}
+
+.img-container img:hover{
+    border-radius: 50%;
+    background-color: white;
+}
+
+.img-container{
+    display: flex;
+    align-items: center;
+    padding-left: 80px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.nav-menu ul li{
+    list-style: none;
+}
+
+.nav-menu ul li a{
+    text-decoration: none;
+    color: white;
+    font-size: 21px;
+    background-color: rgb(60,60,60 );
+    padding: 7px 15px;
+    border-radius: 15px;
+    transition-delay: 0.04s;
+    transition-duration: 0.15s;
+}
+
+.nav-menu ul li a:hover{
+    background-color: rgb(0, 0, 0);
+    padding: 12px 15px;
+}
+
+
+.nav-menu ul li a.active{
+    background-color: rgb(0, 0, 0);
+    padding: 12px 15px;
+}
+
+.nav-menu ul li:nth-child(1)>a{
+    margin-right: 30px;
+}
+
+.nav-menu{
+    padding-right: 80px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.logout-btn{
+    margin-left: 100px;
+}
+
+@media all and (max-width: 950px){
+
+    nav{
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    .img-container img{
+        margin-right: 50px;
+    }
+
+    .menu-with-buttons{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        right: 100px;
+    }
+
+    .menu-with-buttons:nth-child(2) > li{
+  
+    }
+
+    .menu-with-buttons li a{
+        width: 100%;
+    }
+    .menu-with-buttons li{
+        margin-top: 30px;
+        width: 300px;
+    }
+    .nav-menu ul li:nth-child(1)>a{
+        margin-right: 20px;
+    }
+    .nav-menu ul li:nth-child(2)>a{
+        margin-right: 20px;
+    }
+
+    .nav-menu ul li:nth-child(3)>a{
+        margin-right: 50px;
+    }
+
+    .logout-btn{
+        margin: 0;
+    }
+}

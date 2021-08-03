@@ -1,0 +1,79 @@
+<app-header></app-header>
+<div class="container">
+    <section class="container-title">
+        <h1>Add Breed</h1>
+    </section>
+    <section class="container-input">
+        <form #form="ngForm" (ngSubmit)="createDog(form)">
+            <div>
+            <label for="Breed">Dog Breed:</label>
+            <input #breed = "ngModel" ngModel type="text" [minlength]="4" name="breed" id="breed" placeholder="Enter dog breed" required>
+            <ng-container *ngIf="breed.touched">
+            <small *ngIf="breed.errors?.required" class="error">
+                Breed is required.
+              </small>
+              <small *ngIf="breed.errors?.minlength" class="error">
+                Breed must be at least 4 characters long.
+              </small>
+            </ng-container>
+            </div>
+            <div>
+            <label for="Breed">Dog Description:</label>
+            <input #description="ngModel" [minlength]="10" type="text" name="description" id="description" placeholder="Enter dog description" ngModel required>
+            <ng-container *ngIf="description.touched">
+                <small *ngIf="description.errors?.required" class="error">
+                    Description is required.
+                  </small>
+                  <small *ngIf="description.errors?.minlength" class="error">
+                    Description must be at least 10 characters long.
+                  </small>
+                </ng-container>
+            </div>
+            <div>
+            <label for="Breed">Male Dog Weight:</label>
+            <input #maleWeight="ngModel" [minlength]="3" type="text" name="maleWeight" id="maleWeight" placeholder="Enter male dog weight" ngModel required>
+            <ng-container *ngIf="maleWeight.touched">
+                <small *ngIf="maleWeight.errors?.required" class="error">
+                    Male weight is required.
+                  </small>
+                  <small *ngIf="maleWeight.errors?.minlength" class="error">
+                    Male weight must be at least 4 characters long.
+                  </small>
+                </ng-container>
+            </div>
+            <div>
+            <label for="Breed">Female Dog Weight:</label>
+            <input #femaleWeight="ngModel" [minlength]="4" type="text" name="femaleWeight" id="femaleWeight" placeholder="Enter female dog weight" ngModel required>
+            <ng-container *ngIf="femaleWeight.touched">
+                <small *ngIf="femaleWeight.errors?.required" class="error">
+                    Female weight is required.
+                  </small>
+                  <small *ngIf="femaleWeight.errors?.minlength" class="error">
+                    Female weight must be at least 4 characters long.
+                  </small>
+                </ng-container>
+            </div>
+            <div>
+            <label for="Breed">Dog Life:</label>
+            <input #life="ngModel"  type="text" name="life" id="life" placeholder="Enter dog life" ngModel required>
+            <ng-container *ngIf="life.touched">
+                <small *ngIf="life.errors?.required" class="error">
+                    Life is required.
+                  </small>
+                </ng-container>
+            </div>
+            <div>
+            <label for="Breed">Dog Image:</label>
+            <input #imgUrl="ngModel" type="text" name="imgUrl" id="imgUrl" placeholder="Enter dog image url" ngModel required> 
+            <ng-container *ngIf="imgUrl.touched">
+                <small *ngIf="imgUrl.errors?.required" class="error">
+                    Image URL is required.
+                  </small>
+                </ng-container>
+            </div>
+            <fa-icon style="text-align: center;" [icon]="faDog"></fa-icon>
+            <button class="add-breed">Add Breed</button>
+        </form>
+    </section>
+  </div>
+  <app-footer></app-footer>

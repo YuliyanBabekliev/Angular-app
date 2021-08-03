@@ -1,0 +1,50 @@
+<app-header></app-header>
+
+<div class="container">
+  <div class="index-container" *ngIf="!isLogged()" onload="refresh()">
+    <h1>Welcome to dog world!</h1>
+    <div class="dog-images">
+      <img
+        class="dog1"
+        src="../../assets/434ef855bf4775182ab47914b91bceca.jpg"
+        alt=""
+      />
+      <img
+        class="dog3"
+        src="../../assets/982dede2ffa93c7ba62daf3954b0d9b8.jpg"
+        alt=""
+      />
+      <img
+        class="dog2"
+        src="../../assets/feb70c56305563698c2c0c63222e6ad8.jpg  "
+        alt=""
+      />
+    </div>
+    <div class="description">
+      <p>
+        Here you will find different breed dogs, with info for them, and
+        comments from other people. We will help you to choose your dog breed.
+        You can add breeds also, if we don't have it in our site!
+      </p>
+    </div>
+  </div>
+  <div class="home-container" *ngIf="isLogged()">
+    <div class="title-container">
+      <h1 class="title">Dog Breeds</h1>
+    </div>
+    <div class="cards-container" >
+      <section class="card" *ngFor="let dog of dogs | paginate: {itemsPerPage: 6, currentPage: page, totalItems: totalLength}">
+        <a [routerLink]="['/dog', dog.id]">
+         <img [src]="dog.imgUrl" alt="">
+        </a>
+        <a [routerLink]="['/dog', dog.id]">
+          <p class="dog-breed">{{dog.breed}}</p>
+        </a>
+      </section>
+  </div>
+  <pagination-controls class="my-pagination" (pageChange)="page = $event"></pagination-controls>
+  </div>
+</div>
+
+<app-footer></app-footer>
+  

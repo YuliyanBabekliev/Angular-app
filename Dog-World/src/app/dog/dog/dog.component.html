@@ -1,0 +1,69 @@
+<app-header></app-header>
+<div class="container">
+    <section *ngIf="dog" class="img-main-container">
+        <img [src]="dog.imgUrl" alt="">
+    </section>
+    <section *ngIf="dog" class="description-container">
+            <h2><span>{{dog.breed}}</span></h2>
+            <h2>Description:</h2>
+            <p>
+                {{dog.description}}
+            </p>
+            <h2>
+                Weight:
+            </h2>
+            <p>
+                {{dog.maleWeight}}
+            </p> 
+            <p>
+                {{dog.femaleWeight}}
+            </p>   
+            <h2>
+                How long do they live?
+            </h2>
+            <p>
+                {{dog.life}}
+            </p>   
+            <button onclick="myFunction()" class="favourite">Add to favourite</button> 
+            <button (click)="deleteDog()"  class="delete">Delete</button>   
+    </section>
+</div>
+<div class="user-comments">
+    <h1>Comments</h1>
+    <section class="user-comment">
+        <div class="user-photo-container">
+            <img src="../../../assets/male user photo.png" alt="">
+        </div>
+        <div class="comment-container">
+            <h3>Yuliyan</h3>
+            <p>
+                Very smart and clean dog. I want it!
+            </p>
+            <p class="date">
+                Date: 27.07.2021:00:48h
+            </p>
+        </div>
+    </section>
+    <section class="user-comment">
+        <div class="user-photo-container">
+            <img src="../../../assets/Users-User-Female-icon.png" alt="">
+        </div>
+        <div class="comment-container">
+            <h3>Iliyana</h3>
+            <p>
+                So beautiful dog. I love it!
+            </p>
+            <p class="date">
+                Date: 27.07.2021:00:57h
+            </p>
+        </div>
+    </section>
+    <section class="add-comment">
+        <h3 class="comment-title">
+            Write your comment here:
+        </h3>
+        <input class="type-comment" type="text">
+        <input class="comment-btn" type="submit" value="Add Comment">
+    </section>
+</div>
+<app-footer></app-footer>

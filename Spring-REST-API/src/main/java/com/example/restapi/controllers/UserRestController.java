@@ -1,0 +1,110 @@
+package com.example.restapi.controllers;
+
+import com.example.restapi.entities.UserEntity;
+import com.example.restapi.repositories.UserRepository;
+import com.example.restapi.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@RestController
+@RequestMapping("/api/v1")
+public class UserRestController {
+
+    @Autowired
+    private UserRepository userRepository;
+    private UserService userService;
+
+
+    /**
+     * Get all users list.
+     *
+     * @return the list
+     */
+    @GetMapping("/users")
+    public List<UserEntity> getAllUsers() {
+        return userRepository.findAll();
+    }
+
+    /**
+     * Gets users by id.
+     *
+     * @param userId the user id
+     * @return the users by id
+     * @throws //ResourceNotFoundException the resource not found exception
+     */
+    @GetMapping("/users/{id}")
+    public ResponseEntity<UserEntity> getUsersById(@PathVariable(value = "id") Long userId)
+            throws Exception {
+        UserEntity user =
+                userRepository
+                        .findById(userId)
+                        .orElseThrow(() -> new Exception("User not found on :: " + userId));
+        return ResponseEntity.ok().body(user);
+    }
+
+    /**
+     * Create user user.
+     *
+     * @param user the user
+     * @return the user
+     */
+    @PostMapping("/users")
+    public UserEntity createUser(@Valid @RequestBody UserEntity user) {
+        return userRepository.save(user);
+    }
+
+    /**
+     * Update user response entity.
+     *
+     * @param userId      the user id
+     * @param userDetails the user details
+     * @return the response entity
+     * @throws //ResourceNotFoundException the resource not found exception
+     */
+    @PutMapping("/users/{id}")
+    public ResponseEntity<UserEntity> updateUser(
+            @PathVariable(value = "id") Long userId, @Valid @RequestBody UserEntity userDetails)
+            throws Exception {
+
+        UserEntity user =
+                userRepository
+                        .findById(userId)
+                        .orElseThrow(() -> new Exception("User not found on :: " + userId));
+
+        user.setEmail(userDetails.getEmail());
+        user.setUsername(userDetails.getUsername());
+        user.setPassword(userDetails.getPassword());
+        user.setRepeatPassword(userDetails.getRepeatPassword());
+        user.setGender(userDetails.getGender());
+//        user.setComments(userDetails.getComments());
+//        user.setDogs(userDetails.getDogs());
+        final UserEntity updatedUser = userRepository.save(user);
+        return ResponseEntity.ok(updatedUser);
+    }
+
+    /**
+     * Delete user map.
+     *
+     * @param userId the user id
+     * @return the map
+     * @throws Exception the exception
+     */
+    @DeleteMapping("/user/{id}")
+    public Map<String, Boolean> deleteUser(@PathVariable(value = "id") Long userId) throws Exception {
+        UserEntity user =
+                userRepository
+                        .findById(userId)
+                        .orElseThrow(() -> new Exception("User not found on :: " + userId));
+
+        userRepository.delete(user);
+        Map<String, Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return response;
+    }
+}

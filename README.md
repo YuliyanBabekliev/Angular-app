@@ -3,8 +3,8 @@
 ## Getting Started
 To install this application, run the following commands:
 
-  $ git clone https://github.com/oktadeveloper/spring-boot-angular-example.git
-  $ cd spring-boot-angular-example
+  ``` git clone https://github.com/oktadeveloper/spring-boot-angular-example.git
+   cd spring-boot-angular-example ```
 
 ### Open the Spring Boot Application
 Use your Java IDE(like IntelliJ IDEA) to open the Spring-REST-API, then press the run button and the app will start on http://localhost:8080/

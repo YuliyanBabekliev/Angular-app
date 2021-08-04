@@ -3,8 +3,9 @@
 ## Getting Started
 To install this application, run the following commands:
 
-  ``` git clone https://github.com/oktadeveloper/spring-boot-angular-example.git
-   cd spring-boot-angular-example
+  ``` 
+  git clone https://github.com/YuliyanBabekliev/Angular-app
+   cd Angular-app
   ```
 
 ### Open the Spring Boot Application

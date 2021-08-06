@@ -63,6 +63,7 @@ export class RegisterComponent implements OnInit {
         console.log(this.errorMessage)
       }
     );
-    this.router.navigate(['/home']);
+    this.router.navigate(['/login']);
+    alert('User register successfully! Now you have to login.')
   }
 }

@@ -1,5 +1,6 @@
-import { Component, Injectable } from '@angular/core';
+import { Component, Injectable, OnInit } from '@angular/core';
 import {faEnvelope} from '@fortawesome/free-regular-svg-icons';
+import { TokenStorageService } from './services/token-storage/token-storage.service';
 
 
 @Component({
@@ -7,12 +8,29 @@ import {faEnvelope} from '@fortawesome/free-regular-svg-icons';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showModeratorBoard = false;
+  username?: string;
 
-  constructor(){
+  constructor(private tokenStorageService: TokenStorageService){
+  }
+  ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+
+      this.username = user.username;
+    }
   }
 
 
+  logout(): void {
+    this.tokenStorageService.signOut();
+    window.location.reload();
+  }
   title = 'Dog-World';
   faEnvelope = faEnvelope;
 }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { DogComponent } from './dog/dog.component';
 import { DogAddComponent } from './dog-add/dog-add.component';
+import { AuthActivate } from '../core/guards/auth.activate';
 
 
 const routes: Routes = [
@@ -13,11 +14,21 @@ const routes: Routes = [
         path: ':dogId',
         component:DogComponent
       }
-    ]
+    ],
+    canActivate: [AuthActivate],
+    data: {
+      authenticationRequired: true,
+      authenticationFailureRedirectUrl: '/login',
+    }
   },
   {
     path: 'dog-add',
-    component: DogAddComponent
+    component: DogAddComponent,
+    canActivate: [AuthActivate],
+    data: {
+      authenticationRequired: true,
+      authenticationFailureRedirectUrl: '/login',
+    }
   }
 
 ];

@@ -14,7 +14,13 @@ const httpOptions = {
 })
 export class AuthService {
 
-  isAuthenticated: boolean = false;
+  isAuthenticated!: boolean;
+  indexPage: boolean = true;
+  homePage: boolean = false;
+
+  setIsAuthenticated(): void{
+    this.isAuthenticated = true;
+  }
 
   constructor(private http: HttpClient) { }
 
@@ -26,7 +32,6 @@ export class AuthService {
   }
 
   register(username: string, email: string, password: string, gender: string): Observable<any> {
-    this.isAuthenticated = true;
     return this.http.post(AUTH_API + 'signup', {
     username, email, password, gender
     }, {withCredentials:true});

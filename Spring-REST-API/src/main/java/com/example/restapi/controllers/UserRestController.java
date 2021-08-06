@@ -34,9 +34,13 @@ public class UserRestController {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
     private UserService userService;
+    @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
     private JwtUtils jwtUtils;
 
 
@@ -161,7 +165,7 @@ public class UserRestController {
         // Create new user's account
         UserEntity user = new UserEntity(signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
-                signUpRequest.getPassword(),
+                passwordEncoder.encode(signUpRequest.getPassword()),
                         signUpRequest.getGender());
 
         userRepository.save(user);

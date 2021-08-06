@@ -10,6 +10,7 @@ import { DogModule } from './dog/dog.module';
 import {HttpClientModule } from '@angular/common/http';
 import { authInterceptorProviders } from './shared/interceptors/AuthInterceptor';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AuthActivate } from './core/guards/auth.activate';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
     DogModule,
     HttpClientModule
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders, AuthActivate],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

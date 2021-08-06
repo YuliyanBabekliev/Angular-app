@@ -43,9 +43,10 @@ export class LoginComponent implements OnInit {
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.reloadPage();
+        // this.reloadPage();
         this.authService.setIsAuthenticated();
         this.router.navigate(['/']);
+        console.log(this.tokenStorage.getUser());
       },
       err => {
         this.errorMessage = err.error.message;

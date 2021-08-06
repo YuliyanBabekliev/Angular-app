@@ -4,15 +4,18 @@
           <h1 class="container-title">
               User Profile
           </h1>
-          <section class="container-description">
-              <div class="user-img-container">
+          <section class="container-description" *ngIf="user">
+              <div class="user-img-container" *ngIf="user.gender == 'Male'">
                   <img src="../../../assets/male user photo.png" alt="">
               </div>
+              <div class="user-img-container" *ngIf="user.gender == 'Female'">
+                <img src="../../../assets/Users-User-Female-icon.png" alt="">
+            </div>
               <div class="user-description-container">
-                <p>Username: <span> Yuliyan</span></p>
-                <p>Email: <span> digi7al@abv.bg</span></p>
-                <p>Gender: <span> Male</span></p>
-                <p>Favourite dog breeds: <span> Pekinesse, German shepherd</span> </p>
+                <p>Username: <span> {{user.username}}</span></p>
+                <p>Email: <span> {{user.email}}</span></p>
+                <p>Gender: <span> {{user.gender}}</span></p>
+                <p>Favourite dog breeds: <span> {{user.dogs}}</span> </p>
               </div>
           </section>
     </div>

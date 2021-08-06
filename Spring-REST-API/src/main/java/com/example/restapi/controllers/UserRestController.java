@@ -145,7 +145,7 @@ public class UserRestController {
                 userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
-                userDetails.getPassword()));
+                userDetails.getGender()));
     }
 
     @PostMapping("/signup")

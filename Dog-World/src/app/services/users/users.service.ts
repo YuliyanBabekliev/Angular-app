@@ -14,14 +14,15 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
-  isLogged(): boolean {
-    return true;
+    isLogged(): boolean {
+    return false;
   }
 
-  login(data: { email: string; password: string }) {
-    return this.http.post<IUser>(`${this.apiURL}/users/login`, data, { withCredentials: true }).pipe(
-      tap((user: IUser | null | undefined) => this.user = user)
-    );
-  }
+
+  // login(data: { email: string; password: string }) {
+  //   return this.http.post<IUser>(`${this.apiURL}/users/login`, data, { withCredentials: true }).pipe(
+  //     tap((user: IUser | null | undefined) => this.user = user)
+  //   );
+  // }
 }
 

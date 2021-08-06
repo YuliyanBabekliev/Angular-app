@@ -9,12 +9,18 @@ public class UserEntity extends BaseEntity {
     private String username;
     private String email;
     private String password;
-    private String repeatPassword;
     private String gender;
     private Set<DogEntity> dogs;
     private Set<CommentEntity> comments;
 
     public UserEntity() {
+    }
+
+    public UserEntity(String username, String email, String password, String gender) {
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.gender = gender;
     }
 
     public String getUsername() {
@@ -39,15 +45,6 @@ public class UserEntity extends BaseEntity {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    @Column(name = "repeat_password")
-    public String getRepeatPassword() {
-        return repeatPassword;
-    }
-
-    public void setRepeatPassword(String repeatPassword) {
-        this.repeatPassword = repeatPassword;
     }
 
     public String getGender() {

@@ -28,7 +28,7 @@
           <nav class="nav-menu" *ngIf="isLogged()">
             <ul>
               <li class="nav-menu-item">
-                <a  class="logout-btn">Logout</a>
+                <a (click)="logout()"  class="logout-btn">Logout</a>
               </li>
             </ul>
     </nav>

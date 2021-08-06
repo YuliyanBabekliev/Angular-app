@@ -13,7 +13,6 @@ export class DogComponent implements OnInit {
   dog: IDog | undefined;
 
 
-
   constructor(private dogService: DogService,
     private activatedRoute: ActivatedRoute,
     private router: Router

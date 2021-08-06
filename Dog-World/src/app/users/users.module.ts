@@ -6,6 +6,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { UsersRoutingModule } from './users-routing.module';
 import { CoreModule } from '../core/core.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientModule } from '@angular/common/http';
+import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -19,7 +21,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     CommonModule,
     UsersRoutingModule,
     CoreModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    HttpClientModule,
+    FormsModule,
   ],
   exports: [
     LoginComponent, 

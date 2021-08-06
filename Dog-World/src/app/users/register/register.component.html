@@ -1,27 +1,56 @@
-
 <main>
   <div class="img-container">
     <a href="/index.html">
       <img src="../../../assets/pngwing.com (2).png" alt="" />
     </a>
   </div>
-    <form action="">
+    <form #form="ngForm" *ngIf="!isSuccessful" (ngSubmit)="form.valid && onSubmit(form)">
       <h1>Register</h1>
+      <div>
       <label for="Username"><fa-icon [icon]="faUser"></fa-icon>Username</label>
-      <input type="text" placeholder="Username" />
+      <input #username = "ngModel" ngModel name="username" [minlength]="4" type="text" placeholder="Username" required />
+      <ng-container *ngIf="username.touched">
+        <small *ngIf="username.errors?.required" class="error">
+            Username is required.
+          </small>
+          <small *ngIf="username.errors?.minlength" class="error">
+            Username must be at least 4 characters long.
+          </small>
+        </ng-container>
+      </div>
+      <div>
       <label for="Email"><fa-icon [icon]="faEnvelope"></fa-icon>Email</label>
-      <input type="text" placeholder="Email" />
+      <input #email="ngModel" ngModel name="email" email type="text" placeholder="Email" required />
+      <ng-container *ngIf="email.touched">
+        <small *ngIf="email.errors?.required" class="error">
+            Email is required.
+          </small>
+          <small *ngIf="email.errors" class="error">
+            Email must have a '@'.
+          </small>
+        </ng-container>
+      </div>
+      <div>
       <label for="Password"><fa-icon [icon]="faLock"></fa-icon>Password</label>
-      <input type="password" placeholder="password" />
-      <label for="RepeatPassword"><fa-icon [icon]="faLock"></fa-icon>Repeat Password</label>
-      <input type="repeat-password" placeholder="Repeat Password" />
+      <input #password="ngModel" ngModel name="password" [minlength]="6" type="password" placeholder="password" required />
+      <ng-container *ngIf="password.touched">
+        <small *ngIf="password.errors?.required" class="error">
+            Password is required.
+          </small>
+          <small *ngIf="password.errors" class="error">
+            Password must be at least 6 characters long.
+          </small>
+        </ng-container>
+      </div>
+      <div>
       <label for="cars"><fa-icon [icon]="faVenusMars"></fa-icon>Gender</label>
-      <select id="cars" name="cars">
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
+      <select  [(ngModel)]="genderSelected" name="gender" id="cars" name="cars" required>
+        <option *ngFor="let g of gender" [value]="g.name">
+          {{g.name}}
+        </option>
       </select>
-      <input class="login-btn" type="submit" value="Register" />
+    </div>
+    <button class="login-btn">Register</button>
       <p class="text-center">
         Have an account?
         <a routerLink="/login">Log In</a>

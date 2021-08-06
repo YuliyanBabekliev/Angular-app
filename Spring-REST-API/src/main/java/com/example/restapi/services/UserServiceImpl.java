@@ -24,7 +24,6 @@ public class UserServiceImpl implements UserService{
         user.setUsername("Admin");
         user.setEmail("admin@abv.bg");
         user.setPassword("123");
-        user.setRepeatPassword("123");
         user.setGender("male");
 //        user.setDogs(Set.of());
 //        user.setComments(Set.of());

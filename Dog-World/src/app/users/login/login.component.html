@@ -4,13 +4,33 @@
         <img src="../../../assets/pngwing.com (2).png" alt="">
         </a>
     </div>
-    <form action="">
+    <form #form="ngForm" *ngIf="!isLoggedIn" name="form" (ngSubmit)="form.valid && onSubmit(form)">
         <h1>Login</h1>
-        <label for="Email"><fa-icon [icon]="faEnvelope"></fa-icon>Email</label>
-        <input type="text" placeholder="Email">
-        <label for="Password"><fa-icon [icon]="faLock"></fa-icon>Password</label>
-        <input type="password" placeholder="password">
-        <input class="login-btn" type="submit" value="Login">
+        <div>
+          <label for="Username"><fa-icon [icon]="faUser"></fa-icon>Username</label>
+          <input #username = "ngModel" ngModel name="username" [minlength]="4" type="text" placeholder="Username" required />
+          <ng-container *ngIf="username.touched">
+            <small *ngIf="username.errors?.required" class="error">
+                Username is required.
+              </small>
+              <small *ngIf="username.errors?.minlength" class="error">
+                Username must be at least 4 characters long.
+              </small>
+            </ng-container>
+          </div>
+          <div>
+            <label for="Password"><fa-icon [icon]="faLock"></fa-icon>Password</label>
+            <input #password="ngModel" ngModel name="password" [minlength]="6" type="password" placeholder="password" required />
+            <ng-container *ngIf="password.touched">
+              <small *ngIf="password.errors?.required" class="error">
+                  Password is required.
+                </small>
+                <small *ngIf="password.errors" class="error">
+                  Password must be at least 6 characters long.
+                </small>
+              </ng-container>
+            </div>
+        <button class="login-btn">Login</button>
         <p class="text-center">
             If you don't have account, 
             <a routerLink="/register">Register</a>

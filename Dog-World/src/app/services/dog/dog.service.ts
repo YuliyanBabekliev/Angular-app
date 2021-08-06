@@ -14,14 +14,14 @@ export class DogService {
   constructor(private http: HttpClient) { }
 
   loadDog(id: number){
-    return this.http.get<IDog>(`http://localhost:8080/api/v1/dogs/${id}`, );
+    return this.http.get<IDog>(`http://localhost:8080/api/v1/dogs/${id}`, {withCredentials: true});
   }
 
   saveDog(data:any){
-    return this.http.post<IDog>(`${this.baseUrl}`, data,{ withCredentials: true } );
+    return this.http.post<IDog>(`${this.baseUrl}`, data, {withCredentials: true});
   }
 
   deleteDog(id: number){
-    return this.http.delete<IDog>(`${this.baseUrl}/${id}`);
+    return this.http.delete<IDog>(`${this.baseUrl}/${id}`, {withCredentials: true});
   }
 }

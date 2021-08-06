@@ -38,6 +38,15 @@ form label{
     margin-top: 20px;
 }
 
+form div{
+    display: flex;
+    flex-direction: column;
+}
+
+small{
+    color: red;
+}
+
 .login-btn{
     width: 100px;
     margin: 20px auto;

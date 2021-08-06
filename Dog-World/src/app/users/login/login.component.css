@@ -20,6 +20,10 @@
     height: 100vh;
 }
 
+.error{
+    color: red;
+}
+
 form{
     padding-top: 50px;
     display: flex;
@@ -29,6 +33,11 @@ form{
     background-color: white;
     padding: 25px;
     border-radius: 15px;
+}
+
+form div{
+    display: flex;
+    flex-direction: column;
 }
 
 form label{

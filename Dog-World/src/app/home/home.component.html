@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <div class="container">
-  <div class="index-container" *ngIf="!isLogged()" onload="refresh()">
+  <div class="index-container" *ngIf="!isLogged()">
     <h1>Welcome to dog world!</h1>
     <div class="dog-images">
       <img
@@ -28,16 +28,16 @@
       </p>
     </div>
   </div>
-  <div class="home-container" *ngIf="isLogged()">
+  <div class="home-container" *ngIf="isLogged()" onloadeddata="refresh()">
     <div class="title-container">
       <h1 class="title">Dog Breeds</h1>
     </div>
     <div class="cards-container" >
-      <section class="card" *ngFor="let dog of dogs | paginate: {itemsPerPage: 6, currentPage: page, totalItems: totalLength}">
-        <a [routerLink]="['/dog', dog.id]">
+      <section  class="card" *ngFor="let dog of dogs | paginate: {itemsPerPage: 6, currentPage: page, totalItems: totalLength}">
+        <a *ngIf="dog" [routerLink]="['/dog', dog.id]">
          <img [src]="dog.imgUrl" alt="">
         </a>
-        <a [routerLink]="['/dog', dog.id]">
+        <a *ngIf="dog" [routerLink]="['/dog', dog.id]">
           <p class="dog-breed">{{dog.breed}}</p>
         </a>
       </section>

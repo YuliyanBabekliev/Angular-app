@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { UsersService } from 'src/app/services/users/users.service';
 
 @Component({
@@ -8,11 +9,15 @@ import { UsersService } from 'src/app/services/users/users.service';
 })
 export class HeaderComponent  {
 
-  constructor(private usersService: UsersService) { }
+  constructor(private authService: AuthService) { }
 
 
   isLogged():boolean{
-    return this.usersService.isLogged();
+    return this.authService.isAuthenticated;
+  }
+
+  logout(){
+    this.authService.logout();
   }
 
 }

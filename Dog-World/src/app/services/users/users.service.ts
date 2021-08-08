@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { IUser } from 'src/app/shared/interfaces/user';
-import {tap} from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 const AUTH_API = 'http://localhost:8080/api/v1/';

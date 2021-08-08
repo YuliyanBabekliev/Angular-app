@@ -47,11 +47,13 @@ export class RegisterComponent implements OnInit {
     const username = form.value.username;
     const email  = form.value.email;
     const password = form.value.password;
+    const dogs: string[] = [];
+    const comments: string[] = [];
     //TODO implement gender
     console.log(username);
     console.log(this.genderSelected);
 
-    this.authService.register(username, email, password, this.genderSelected).subscribe(
+    this.authService.register(username, email, password, this.genderSelected, dogs, comments).subscribe(
       data => {
         console.log(data);
         this.isSuccessful = true;

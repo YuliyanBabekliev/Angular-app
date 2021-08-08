@@ -15,16 +15,9 @@ export class AuthActivate implements CanActivate {
       
       this.router.navigate(["login"],{ queryParams: { retUrl: route.url} });
       return false;
-  }
-  if (this.authService.isAuthenticated) {
-    alert('You have to logout to see this page. You are redirected to login Page');
-    
-    this.router.navigate(["/home"],{ queryParams: { retUrl: route.url} });
-    return false;
-}
-  else{
+  }else{
 
-    return false;
+    return true;
   }
   }
 }

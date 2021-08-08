@@ -6,7 +6,7 @@
             <img src="../../../assets/pngwing.com (2).png" alt="">
             </a>
         </div>
-        <ul class="not-logged" *ngIf="!isLogged()">
+        <ul class="not-logged" *ngIf="!isLogged">
             <li class="nav-menu-item">
                 <a routerLink="/login">Login</a>
             </li>
@@ -14,7 +14,7 @@
                 <a routerLink="/register">Register</a>
             </li>
         </ul>
-        <ul class="menu-with-buttons" *ngIf="isLogged()">
+        <ul class="menu-with-buttons" *ngIf="isLogged">
             <li>
               <a class="button" routerLink="/home" routerLinkActive="active">Dog breeds</a>
             </li>
@@ -25,7 +25,7 @@
               <a class="button" routerLink="/profile" routerLinkActive="active">Profile</a>
             </li>
           </ul>
-          <nav class="nav-menu" *ngIf="isLogged()">
+          <nav class="nav-menu" *ngIf="isLogged">
             <ul>
               <li class="nav-menu-item">
                 <a (click)="logout()"  class="logout-btn">Logout</a>

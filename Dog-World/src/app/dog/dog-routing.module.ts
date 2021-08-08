@@ -15,6 +15,7 @@ const routes: Routes = [
         component:DogComponent
       }
     ],
+    canActivate: [AuthActivate],
     data: {
       authenticationRequired: true,
       authenticationFailureRedirectUrl: '/login',

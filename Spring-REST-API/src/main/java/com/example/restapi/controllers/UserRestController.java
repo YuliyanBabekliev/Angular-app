@@ -21,10 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.security.Principal;
-import java.util.Base64;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @RestController
@@ -104,11 +101,13 @@ public class UserRestController {
         user.setUsername(userDetails.getUsername());
         user.setPassword(userDetails.getPassword());
         user.setGender(userDetails.getGender());
-//        user.setComments(userDetails.getComments());
-//        user.setDogs(userDetails.getDogs());
+        user.setComments(userDetails.getComments());
+        user.setDogs(userDetails.getDogs());
         final UserEntity updatedUser = userRepository.save(user);
         return ResponseEntity.ok(updatedUser);
     }
+
+
 
     /**
      * Delete user map.
@@ -145,7 +144,9 @@ public class UserRestController {
                 userDetails.getId(),
                 userDetails.getUsername(),
                 userDetails.getEmail(),
-                userDetails.getGender()));
+                userDetails.getGender(),
+                userDetails.getDogs(),
+                userDetails.getComments()));
     }
 
     @PostMapping("/signup")
@@ -166,7 +167,7 @@ public class UserRestController {
         UserEntity user = new UserEntity(signUpRequest.getUsername(),
                 signUpRequest.getEmail(),
                 passwordEncoder.encode(signUpRequest.getPassword()),
-                        signUpRequest.getGender());
+                        signUpRequest.getGender(), Set.of(), Set.of());
 
         userRepository.save(user);
 

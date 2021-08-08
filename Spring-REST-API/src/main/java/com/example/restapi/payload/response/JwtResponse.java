@@ -1,5 +1,10 @@
 package com.example.restapi.payload.response;
 
+import com.example.restapi.entities.CommentEntity;
+import com.example.restapi.entities.DogEntity;
+
+import java.util.Set;
+
 public class JwtResponse {
     private String token;
     private String type = "Bearer";
@@ -7,13 +12,17 @@ public class JwtResponse {
     private String username;
     private String email;
     private String gender;
+    private Set<DogEntity> dogs;
+    private Set<CommentEntity> comments;
 
-    public JwtResponse(String accessToken, Long id, String username, String email, String gender) {
+    public JwtResponse(String accessToken, Long id, String username, String email, String gender, Set<DogEntity> dogs, Set<CommentEntity> comments) {
         this.token = accessToken;
         this.id = id;
         this.username = username;
         this.email = email;
         this.gender = gender;
+        this.dogs = dogs;
+        this.comments = comments;
     }
 
     public String getAccessToken() {
@@ -62,5 +71,21 @@ public class JwtResponse {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public Set<DogEntity> getDogs() {
+        return dogs;
+    }
+
+    public void setDogs(Set<DogEntity> dogs) {
+        this.dogs = dogs;
+    }
+
+    public Set<CommentEntity> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<CommentEntity> comments) {
+        this.comments = comments;
     }
 }

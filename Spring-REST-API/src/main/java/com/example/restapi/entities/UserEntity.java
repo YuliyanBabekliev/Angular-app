@@ -16,11 +16,13 @@ public class UserEntity extends BaseEntity {
     public UserEntity() {
     }
 
-    public UserEntity(String username, String email, String password, String gender) {
+    public UserEntity(String username, String email, String password, String gender, Set<DogEntity> dogs, Set<CommentEntity> comments) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.gender = gender;
+        this.dogs = dogs;
+        this.comments = comments;
     }
 
     public String getUsername() {

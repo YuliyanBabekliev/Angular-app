@@ -10,17 +10,17 @@ import { IUser } from 'src/app/shared/interfaces/user';
 })
 export class ProfileComponent implements OnInit {
 
-  user: IUser | undefined;
+  user = this.tokenStorage.getUser();
 
   constructor(private tokenStorage: TokenStorageService,
     private usersService: UsersService) { }
 
   ngOnInit(): void {
-    this.user = this.tokenStorage.getUser();
+    console.log(this.user.dogs);
   }
 
   loadUser(){
-    const id = this.tokenStorage.getUser().id;
+    const id = this.user.id;
     this.usersService.getUserById(id).subscribe(user => this.user = user);
   }
 

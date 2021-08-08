@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UsersService } from 'src/app/services/users/users.service';
 
@@ -9,12 +10,11 @@ import { UsersService } from 'src/app/services/users/users.service';
 })
 export class HeaderComponent  {
 
-  constructor(private authService: AuthService) { }
+  isLogged = this.authService.isAuthenticated;
 
+  constructor(private authService: AuthService,
+    private router: Router) { }
 
-  isLogged():boolean{
-    return this.authService.isAuthenticated;
-  }
 
   logout(){
     this.authService.logout();

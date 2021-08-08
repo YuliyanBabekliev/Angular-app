@@ -1,5 +1,7 @@
 package com.example.restapi.security.services;
 
+import com.example.restapi.entities.CommentEntity;
+import com.example.restapi.entities.DogEntity;
 import com.example.restapi.entities.UserEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
@@ -7,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 import java.util.Objects;
+import java.util.Set;
 
 public class UserDetailsImpl implements UserDetails {
     private static final long serialVersionUID = 1L;
@@ -22,13 +25,18 @@ public class UserDetailsImpl implements UserDetails {
     @JsonIgnore
     private String password;
 
+    private Set<DogEntity> dogs;
+    private Set<CommentEntity> comments;
 
-    public UserDetailsImpl(Long id, String username, String email, String password,String gender) {
+
+    public UserDetailsImpl(Long id, String username, String email, String password,String gender, Set<DogEntity> dogs, Set<CommentEntity> comments) {
         this.id = id;
         this.username = username;
         this.email = email;
         this.password = password;
         this.gender = gender;
+        this.dogs = dogs;
+        this.comments = comments;
     }
 
     public static UserDetailsImpl build(UserEntity user) {
@@ -38,7 +46,9 @@ public class UserDetailsImpl implements UserDetails {
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
-                user.getGender());
+                user.getGender(),
+                user.getDogs(),
+                user.getComments());
     }
 
 
@@ -101,5 +111,21 @@ public class UserDetailsImpl implements UserDetails {
 
     public void setGender(String gender) {
         this.gender = gender;
+    }
+
+    public Set<DogEntity> getDogs() {
+        return dogs;
+    }
+
+    public void setDogs(Set<DogEntity> dogs) {
+        this.dogs = dogs;
+    }
+
+    public Set<CommentEntity> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<CommentEntity> comments) {
+        this.comments = comments;
     }
 }

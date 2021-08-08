@@ -1,6 +1,8 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { TokenStorageService } from '../token-storage/token-storage.service';
 
 const AUTH_API = 'http://localhost:8080/api/v1/';
 
@@ -14,15 +16,13 @@ const httpOptions = {
 })
 export class AuthService {
 
-  isAuthenticated!: boolean;
+  isAuthenticated = this.tokenService.getToken();
   indexPage: boolean = true;
   homePage: boolean = false;
 
-  setIsAuthenticated(): void{
-    this.isAuthenticated = true;
-  }
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+    private router: Router,
+    private tokenService: TokenStorageService) { }
 
   login(username: string, password: string): Observable<any> {
     return this.http.post(AUTH_API + 'signin', {
@@ -31,15 +31,16 @@ export class AuthService {
     }, {withCredentials: true});
   }
 
-  register(username: string, email: string, password: string, gender: string): Observable<any> {
+  register(username: string, email: string, password: string, gender: string, dogs: string[], comments: string[]): Observable<any> {
     return this.http.post(AUTH_API + 'signup', {
     username, email, password, gender
     }, {withCredentials:true});
   }
 
   logout(){
-    this.isAuthenticated = false;
     window.sessionStorage.clear();
+    window.location.reload();
+    this.router.navigate(['/']);
   }
 
 

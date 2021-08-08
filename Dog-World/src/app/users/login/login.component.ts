@@ -43,9 +43,9 @@ export class LoginComponent implements OnInit {
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        // this.reloadPage();
-        this.authService.setIsAuthenticated();
-        this.router.navigate(['/']);
+        this.router.navigate(['/home']).then(() => {
+          window.location.reload();
+        })
         console.log(this.tokenStorage.getUser());
       },
       err => {
@@ -54,9 +54,5 @@ export class LoginComponent implements OnInit {
         this.isLoginFailed = true;
       }
     );
-  }
-
-  reloadPage(): void {
-    window.location.reload();
   }
 }

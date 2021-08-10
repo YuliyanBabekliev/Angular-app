@@ -12,7 +12,7 @@ import { RegisterComponent } from '../users/register/register.component';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit, OnChanges{
+export class HomeComponent implements OnInit{
 
   totalLength: any;
   page: number = 1;
@@ -25,10 +25,6 @@ export class HomeComponent implements OnInit, OnChanges{
     ) { }
 
   ngOnInit(): void {
-    if(this.homePage == undefined && this.isLogged){
-      this.homePage = true;
-      // window.location.reload();
-    }
     this.dogService.getDogs().subscribe((data: IDog[]) => {
       this.dogs = data;
       this.totalLength = data.length;
@@ -37,16 +33,4 @@ export class HomeComponent implements OnInit, OnChanges{
       }
     });
   } 
-
-  ngOnChanges(changes: SimpleChanges): void{
-    console.log(changes.previousValue);
-  }
-
-  refresh() : boolean{
-    if(this.authService.isAuthenticated){
-    window.location.reload();
-    }
-    return true;
-  }
-  
 }

@@ -17,6 +17,7 @@ public class DogEntity extends BaseEntity{
     private String life;
     private String imgUrl;
     private Set<CommentEntity> comments;
+    private String username;
 
     public DogEntity() {
     }
@@ -80,5 +81,13 @@ public class DogEntity extends BaseEntity{
 
     public void setComments(Set<CommentEntity> comments) {
         this.comments = comments;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

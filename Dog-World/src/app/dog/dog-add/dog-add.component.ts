@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import {faDog} from '@fortawesome/free-solid-svg-icons';
 import { DogService } from 'src/app/services/dog/dog.service';
+import { TokenStorageService } from 'src/app/services/token-storage/token-storage.service';
 import { IDog } from 'src/app/shared/interfaces/dog';
 
 @Component({
@@ -12,7 +13,8 @@ import { IDog } from 'src/app/shared/interfaces/dog';
 })
 export class DogAddComponent {
   constructor(private dogService: DogService,
-    private router: Router) { }
+    private router: Router,
+    private tokenStorage: TokenStorageService) { }
 
     faDog = faDog;
 
@@ -20,7 +22,7 @@ export class DogAddComponent {
     if(form.invalid){
       return;
     }
-
+    form.value.username = this.tokenStorage.getUser().username;
     this.dogService.saveDog(form.value).subscribe({
       next: () => {
         console.log(form.value);

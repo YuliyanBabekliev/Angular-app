@@ -24,7 +24,6 @@ public class CommentServiceImpl implements CommentService {
     public void seedComments() {
         CommentEntity comment = new CommentEntity();
         comment.setComment("Very beautiful and clean dog!");
-        comment.setDateAndTime(LocalDateTime.now());
 
        // this.commentRepository.saveAndFlush(comment);
     }

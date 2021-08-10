@@ -25,12 +25,15 @@
                 {{dog.life}}
             </p>   
             <button (click)="addToFavourite()" class="favourite">Add to favourite</button> 
-            <button (click)="deleteDog()"  class="delete">Delete</button> 
+            <button *ngIf="username == dog.username" (click)="deleteDog()"  class="delete">Delete</button> 
+            <p style="font-weight: bolder;">
+                Added by {{dog.username}}
+            </p>
     </section>
 </div>
 <div class="user-comments">
     <h1>Comments</h1>
-    <section class="user-comment">
+    <!-- <section class="user-comment">
         <div class="user-photo-container">
             <img src="../../../assets/male user photo.png" alt="">
         </div>
@@ -57,13 +60,36 @@
                 Date: 27.07.2021:00:57h
             </p>
         </div>
+    </section> -->
+    
+    <section *ngFor="let comment of comments" >
+        <div class="user-comment" *ngIf="comment.dog.breed == dog.breed">
+        <div class="user-photo-container" *ngIf="comment.user.gender== 'Male'">
+            <img src="../../../assets/male user photo.png" alt="">
+        </div>
+        <div class="user-photo-container" *ngIf="comment.user.gender == 'Female'">
+            <img src="../../../assets/Users-User-Female-icon.png" alt="">
+        </div>
+        <div class="comment-container">
+            <h3>{{comment.user.username}}</h3>
+            <p>
+               {{comment.comment}}
+            </p>
+            <p class="date" style="text-align: right;">
+                {{comment.dateAndTime}}
+            </p>
+        </div>
+    </div>
     </section>
+    
     <section class="add-comment">
         <h3 class="comment-title">
             Write your comment here:
         </h3>
-        <input class="type-comment" type="text">
-        <input class="comment-btn" type="submit" value="Add Comment">
+        <form #form="ngForm" (ngSubmit)="addComment(form)">
+            <input #comment = "ngModel" ngModel type="text" name="comment" id="comment" required>
+        <button class="comment-btn">Add comment</button>
+        </form>
     </section>
 </div>
 <app-footer></app-footer>

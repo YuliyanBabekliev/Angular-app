@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+@CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", allowCredentials = "true")
 @RestController
 @RequestMapping("/api/v1")
 public class CommentRestController {
@@ -56,6 +58,12 @@ public class CommentRestController {
      */
     @PostMapping("/comments")
     public CommentEntity createComment(@Valid @RequestBody CommentEntity comment) {
+        LocalDateTime now = LocalDateTime.now();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        String formatDateTime = now.format(formatter);
+        comment.setDateAndTime(formatDateTime);
         return commentRepository.save(comment);
     }
 
@@ -78,7 +86,11 @@ public class CommentRestController {
                         .orElseThrow(() -> new Exception("Comment not found on :: " + commentId));
 
         comment.setComment(commentDetails.getComment());
-        comment.setDateAndTime(LocalDateTime.now());
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
+        String formatDateTime = now.format(formatter);
+        comment.setDateAndTime(formatDateTime);
 //        user.setComments(userDetails.getComments());
 //        user.setDogs(userDetails.getDogs());
         final CommentEntity updateComment = commentRepository.save(comment);

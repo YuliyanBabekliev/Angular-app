@@ -8,8 +8,9 @@ import java.util.Set;
 @Table(name = "comments")
 public class CommentEntity extends BaseEntity {
     private String comment;
-    private LocalDateTime dateAndTime;
+    private String dateAndTime;
     private UserEntity user;
+    private DogEntity dog;
 
     public CommentEntity() {
     }
@@ -23,11 +24,11 @@ public class CommentEntity extends BaseEntity {
     }
 
     @Column(name = "date_and_time")
-    public LocalDateTime getDateAndTime() {
+    public String getDateAndTime() {
         return dateAndTime;
     }
 
-    public void setDateAndTime(LocalDateTime dateAndTime) {
+    public void setDateAndTime(String dateAndTime) {
         this.dateAndTime = dateAndTime;
     }
 
@@ -38,5 +39,14 @@ public class CommentEntity extends BaseEntity {
 
     public void setUser(UserEntity user) {
         this.user = user;
+    }
+
+    @ManyToOne
+    public DogEntity getDog() {
+        return dog;
+    }
+
+    public void setDog(DogEntity dog) {
+        this.dog = dog;
     }
 }

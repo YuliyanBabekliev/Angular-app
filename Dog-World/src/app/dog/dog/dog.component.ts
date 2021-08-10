@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CommentsService } from 'src/app/services/comments/comments.service';
 import { DogService } from 'src/app/services/dog/dog.service';
 import { TokenStorageService } from 'src/app/services/token-storage/token-storage.service';
+import { IComment } from 'src/app/shared/interfaces/comment';
 import { IDog } from 'src/app/shared/interfaces/dog';
 
 @Component({
@@ -12,18 +15,27 @@ import { IDog } from 'src/app/shared/interfaces/dog';
 export class DogComponent implements OnInit {
 
   dog!: IDog;
+  
   user = this.tokenStorage.getUser();
+  username = this.tokenStorage.getUser().username;
+
+  comments!: IComment[];
 
 
   constructor(private dogService: DogService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private tokenStorage: TokenStorageService
+    private tokenStorage: TokenStorageService,
+    private commentService: CommentsService
     ) { 
       this.loadDog();
     }
 
   ngOnInit(): void {
+    this.commentService.loadComments().subscribe((data: IComment[]) => {
+      this.comments = data;
+      console.log(this.comments);
+    });
   }
 
   loadDog(): void {
@@ -45,5 +57,20 @@ export class DogComponent implements OnInit {
   addToFavourite(){
     this.user.dogs.push(this.dog.breed); 
     console.log(this.user);
+  }
+
+  addComment(form: NgForm): void{
+    form.value.user = this.user;
+    form.value.dog = this.dog;
+    console.log(form.value);
+    this.commentService.saveComment(form.value).subscribe({
+      next: () => {
+        console.log(form.value);
+        window.location.reload();
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    })
   }
 }

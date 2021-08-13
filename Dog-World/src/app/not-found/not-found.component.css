@@ -1,0 +1,14 @@
+.container{
+    text-align: center;
+    background-image: url('../../assets/dogs-cover.jpg');
+    background-size: cover;
+    height: 90vh;
+}
+
+.msg p {
+    margin: 0;
+    font-size: 30px;
+    font-weight: bold;
+    color: red;
+    padding-top: 30px;
+}

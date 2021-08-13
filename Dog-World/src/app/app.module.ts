@@ -11,20 +11,22 @@ import {HttpClientModule } from '@angular/common/http';
 import { authInterceptorProviders } from './shared/interceptors/AuthInterceptor';
 import { FormBuilder, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthActivate } from './core/guards/auth.activate';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    NotFoundComponent,
   ],
   imports: [
     FormsModule,
     BrowserModule,
-    AppRoutingModule,
     CoreModule,
     UsersModule,
     HomeModule,
     DogModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [authInterceptorProviders, AuthActivate],
   bootstrap: [AppComponent],

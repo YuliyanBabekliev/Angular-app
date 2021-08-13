@@ -10,18 +10,18 @@ public class UserEntity extends BaseEntity {
     private String email;
     private String password;
     private String gender;
-    private Set<DogEntity> dogs;
+    private Set<DogEntity> favouriteDogs;
     private Set<CommentEntity> comments;
 
     public UserEntity() {
     }
 
-    public UserEntity(String username, String email, String password, String gender, Set<DogEntity> dogs, Set<CommentEntity> comments) {
+    public UserEntity(String username, String email, String password, String gender, Set<DogEntity> favouriteDogs, Set<CommentEntity> comments) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.gender = gender;
-        this.dogs = dogs;
+        this.favouriteDogs = favouriteDogs;
         this.comments = comments;
     }
 
@@ -58,12 +58,12 @@ public class UserEntity extends BaseEntity {
     }
 
     @OneToMany(fetch = FetchType.EAGER)
-    public Set<DogEntity> getDogs() {
-        return dogs;
+    public Set<DogEntity> getFavouriteDogs() {
+        return favouriteDogs;
     }
 
-    public void setDogs(Set<DogEntity> dogs) {
-        this.dogs = dogs;
+    public void setFavouriteDogs(Set<DogEntity> favouriteDogs) {
+        this.favouriteDogs = favouriteDogs;
     }
 
     @OneToMany(fetch = FetchType.EAGER)

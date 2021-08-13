@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommentsService } from 'src/app/services/comments/comments.service';
 import { DogService } from 'src/app/services/dog/dog.service';
 import { TokenStorageService } from 'src/app/services/token-storage/token-storage.service';
+import { UsersService } from 'src/app/services/users/users.service';
 import { IComment } from 'src/app/shared/interfaces/comment';
 import { IDog } from 'src/app/shared/interfaces/dog';
 
@@ -20,13 +21,19 @@ export class DogComponent implements OnInit {
   username = this.tokenStorage.getUser().username;
 
   comments!: IComment[];
+  favouriteDogs!: IDog[];
+  comment!: IComment;
+
+  btnStyle = 'btn-default';
+
 
 
   constructor(private dogService: DogService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
     private tokenStorage: TokenStorageService,
-    private commentService: CommentsService
+    private commentService: CommentsService,
+    private userService: UsersService
     ) { 
       this.loadDog();
     }
@@ -34,7 +41,6 @@ export class DogComponent implements OnInit {
   ngOnInit(): void {
     this.commentService.loadComments().subscribe((data: IComment[]) => {
       this.comments = data;
-      console.log(this.comments);
     });
   }
 
@@ -47,16 +53,33 @@ export class DogComponent implements OnInit {
   deleteDog(): void{
     if(confirm('Are you sure you want to delete this dog?')){
       const id = this.activatedRoute.snapshot.params.dogId;
+      for(let comment of this.comments){
+        if(comment.dog.id == id){
+          this.commentService.deleteComment(comment.id).subscribe();
+        }
+      }
       this.dogService.deleteDog(id).subscribe();
       this.router.navigate(['/home']).then(() => {
         window.location.reload();
       })
-    }
+     }
   }
 
-  addToFavourite(){
+  addToFavourite(form: NgForm){
     this.user.dogs.push(this.dog.breed); 
-    console.log(this.user);
+    const id = this.tokenStorage.getUser().id;
+    form.value.id = this.dog.id;
+    console.log(this.dog.id);
+    this.userService.editUserById(this.dog.id).subscribe(data => {
+      this.favouriteDogs = data;
+      console.log(this.favouriteDogs);
+    });
+  }
+
+  submit() {
+    if(this.btnStyle == 'btn-default') {
+      this.btnStyle = 'btn-change';
+    } 
   }
 
   addComment(form: NgForm): void{
@@ -73,4 +96,6 @@ export class DogComponent implements OnInit {
       }
     })
   }
+
+
 }

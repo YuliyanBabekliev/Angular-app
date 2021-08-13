@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DogComponent } from './dog/dog.component';
 import { DogAddComponent } from './dog-add/dog-add.component';
 import { AuthActivate } from '../core/guards/auth.activate';
+import { NotFoundComponent } from '../not-found/not-found.component';
 
 
 const routes: Routes = [

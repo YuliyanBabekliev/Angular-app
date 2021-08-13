@@ -25,7 +25,7 @@ public class UserDetailsImpl implements UserDetails {
     @JsonIgnore
     private String password;
 
-    private Set<DogEntity> dogs;
+    private Set<DogEntity> favouriteDogs;
     private Set<CommentEntity> comments;
 
 
@@ -35,7 +35,7 @@ public class UserDetailsImpl implements UserDetails {
         this.email = email;
         this.password = password;
         this.gender = gender;
-        this.dogs = dogs;
+        this.favouriteDogs = dogs;
         this.comments = comments;
     }
 
@@ -47,7 +47,7 @@ public class UserDetailsImpl implements UserDetails {
                 user.getEmail(),
                 user.getPassword(),
                 user.getGender(),
-                user.getDogs(),
+                user.getFavouriteDogs(),
                 user.getComments());
     }
 
@@ -114,11 +114,11 @@ public class UserDetailsImpl implements UserDetails {
     }
 
     public Set<DogEntity> getDogs() {
-        return dogs;
+        return favouriteDogs;
     }
 
     public void setDogs(Set<DogEntity> dogs) {
-        this.dogs = dogs;
+        this.favouriteDogs = dogs;
     }
 
     public Set<CommentEntity> getComments() {

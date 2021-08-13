@@ -6,6 +6,6 @@ export interface IUser{
     username: string;
     email: string;
     gender: string;
-    dogs: string[];
+    favouriteDogs: IDog[];
     comments: IComment[];
 }

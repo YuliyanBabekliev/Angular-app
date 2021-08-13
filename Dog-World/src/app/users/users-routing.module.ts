@@ -6,6 +6,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AuthActivate } from '../core/guards/auth.activate';
 
+
 const routes: Routes = [
   {
     path: 'login',

@@ -19,4 +19,8 @@ export class CommentsService {
   saveComment(data:any){
     return this.http.post<IComment>(`${this.baseUrl}`, data, {withCredentials: true});
   }
+
+  deleteComment(id: number){
+    return this.http.delete<IComment>(`${this.baseUrl}/${id}`, {withCredentials: true});
+  }
 }

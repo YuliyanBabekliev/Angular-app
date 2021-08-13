@@ -7,6 +7,11 @@
     <form #form="ngForm" *ngIf="!isLoggedIn" name="form" (ngSubmit)="form.valid && onSubmit(form)">
         <h1>Login</h1>
         <div>
+          <ng-container>
+            <small *ngIf="isLoginFailed" class="error">
+              Invalid username or password.
+            </small>
+          </ng-container>
           <label for="Username"><fa-icon [icon]="faUser"></fa-icon>Username</label>
           <input #username = "ngModel" ngModel name="username" [minlength]="4" type="text" placeholder="Username" required />
           <ng-container *ngIf="username.touched">

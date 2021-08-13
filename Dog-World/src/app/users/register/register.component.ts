@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faLock, faEnvelope, faUser, faVenusMars } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { IDog } from 'src/app/shared/interfaces/dog';
 import { Gender } from 'src/app/shared/interfaces/gender';
 @Component({
   selector: 'app-register',
@@ -47,7 +48,7 @@ export class RegisterComponent implements OnInit {
     const username = form.value.username;
     const email  = form.value.email;
     const password = form.value.password;
-    const dogs: string[] = [];
+    const dogs: IDog[] = [];
     const comments: string[] = [];
     //TODO implement gender
     console.log(username);

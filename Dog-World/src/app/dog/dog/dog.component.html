@@ -24,9 +24,11 @@
             <p>
                 {{dog.life}}
             </p>   
-            <button (click)="addToFavourite()" class="favourite">Add to favourite</button> 
+            <form #form="ngForm" (ngSubmit)="addToFavourite(form)">
+            <button [ngClass]="[btnStyle]" (click)="submit()">Add to favourite</button> 
+            </form>
             <button *ngIf="username == dog.username" (click)="deleteDog()"  class="delete">Delete</button> 
-            <p style="font-weight: bolder;">
+            <p style="font-weight: bolder;" *ngIf="dog.username != null">
                 Added by {{dog.username}}
             </p>
     </section>

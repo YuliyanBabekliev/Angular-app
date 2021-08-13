@@ -93,6 +93,9 @@ header ul{
     margin-left: 100px;
 }
 
+.logout-btn:hover{
+    cursor: pointer;
+}
 @media all and (max-width: 950px){
 
     nav{

@@ -1,13 +1,16 @@
 package com.example.restapi.controllers;
 
+import com.example.restapi.entities.DogEntity;
 import com.example.restapi.entities.UserEntity;
 import com.example.restapi.payload.request.LoginRequest;
 import com.example.restapi.payload.request.SignupRequest;
 import com.example.restapi.payload.response.JwtResponse;
 import com.example.restapi.payload.response.MessageResponse;
+import com.example.restapi.repositories.DogRepository;
 import com.example.restapi.repositories.UserRepository;
 import com.example.restapi.security.jwt.JwtUtils;
 import com.example.restapi.security.services.UserDetailsImpl;
+import com.example.restapi.services.DogService;
 import com.example.restapi.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -24,8 +27,8 @@ import java.security.Principal;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@RestController
 @CrossOrigin(origins = "http://localhost:4200", allowedHeaders = "*", allowCredentials = "true")
+@RestController
 @RequestMapping("/api/v1")
 public class UserRestController {
 
@@ -39,6 +42,8 @@ public class UserRestController {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private JwtUtils jwtUtils;
+    @Autowired
+    private DogRepository dogRepository;
 
 
     /**
@@ -83,13 +88,13 @@ public class UserRestController {
      * Update user response entity.
      *
      * @param userId      the user id
-     * @param userDetails the user details
+    // * @param userDetails the user details
      * @return the response entity
      * @throws //ResourceNotFoundException the resource not found exception
      */
     @PutMapping("/users/{id}")
     public ResponseEntity<UserEntity> updateUser(
-            @PathVariable(value = "id") Long userId, @Valid @RequestBody UserEntity userDetails)
+            @PathVariable(value = "id") Long userId, @Valid @RequestBody int id)
             throws Exception {
 
         UserEntity user =
@@ -97,12 +102,13 @@ public class UserRestController {
                         .findById(userId)
                         .orElseThrow(() -> new Exception("User not found on :: " + userId));
 
-        user.setEmail(userDetails.getEmail());
-        user.setUsername(userDetails.getUsername());
-        user.setPassword(userDetails.getPassword());
-        user.setGender(userDetails.getGender());
-        user.setComments(userDetails.getComments());
-        user.setDogs(userDetails.getDogs());
+        Long idInLong = Long.parseLong(String.valueOf(id));
+        DogEntity dog =
+                dogRepository
+                .findById(idInLong)
+                .orElseThrow(() -> new Exception("Dog not found on :: " + id));
+
+        user.setFavouriteDogs(Set.of(dog));
         final UserEntity updatedUser = userRepository.save(user);
         return ResponseEntity.ok(updatedUser);
     }

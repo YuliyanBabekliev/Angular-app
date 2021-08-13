@@ -104,7 +104,7 @@ public class CommentRestController {
      * @return the map
      * @throws Exception the exception
      */
-    @DeleteMapping("/comment/{id}")
+    @DeleteMapping("/comments/{id}")
     public Map<String, Boolean> deleteComment(@PathVariable(value = "id") Long commentId) throws Exception {
         CommentEntity comment =
                 commentRepository

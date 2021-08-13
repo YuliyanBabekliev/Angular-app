@@ -53,16 +53,21 @@ export class DogComponent implements OnInit {
   deleteDog(): void{
     if(confirm('Are you sure you want to delete this dog?')){
       const id = this.activatedRoute.snapshot.params.dogId;
-      for(let comment of this.comments){
-        if(comment.dog.id == id){
-          this.commentService.deleteComment(comment.id).subscribe();
-        }
-      }
+      this.deleteComments(id);
+      window.location.reload();
       this.dogService.deleteDog(id).subscribe();
       this.router.navigate(['/home']).then(() => {
         window.location.reload();
       })
      }
+  }
+
+  deleteComments(id: number):void{
+    for(let comment of this.comments){
+      if(comment.dog.id == id){
+        this.commentService.deleteComment(comment.id).subscribe();
+      }
+    }
   }
 
   addToFavourite(form: NgForm){

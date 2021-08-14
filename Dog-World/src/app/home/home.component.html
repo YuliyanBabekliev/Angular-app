@@ -28,11 +28,14 @@
       </p>
     </div>
   </div>
-  <div class="home-container" *ngIf="isLogged" onloadeddata="refresh()">
+  <div class="home-container" *ngIf="isLogged">
     <div class="title-container">
       <h1 class="title">Dog Breeds</h1>
     </div>
     <div class="cards-container" >
+      <section *ngIf="dogs == null">
+        Loading...
+      </section>
       <section  class="card" *ngFor="let dog of dogs | paginate: {itemsPerPage: 6, currentPage: page, totalItems: totalLength}">
         <a *ngIf="dog" [routerLink]="['/dog', dog.id]">
          <img [src]="dog.imgUrl" alt="">

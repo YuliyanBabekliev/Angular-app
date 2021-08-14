@@ -24,10 +24,6 @@ export class DogComponent implements OnInit {
   favouriteDogs!: IDog[];
   comment!: IComment;
 
-  btnStyle = 'btn-default';
-
-
-
   constructor(private dogService: DogService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
@@ -55,9 +51,9 @@ export class DogComponent implements OnInit {
       const id = this.activatedRoute.snapshot.params.dogId;
       this.deleteComments(id);
       window.location.reload();
-      this.dogService.deleteDog(id).subscribe();
       this.router.navigate(['/home']).then(() => {
         window.location.reload();
+        this.deleteDogs(id);
       })
      }
   }
@@ -70,21 +66,8 @@ export class DogComponent implements OnInit {
     }
   }
 
-  addToFavourite(form: NgForm){
-    this.user.dogs.push(this.dog.breed); 
-    const id = this.tokenStorage.getUser().id;
-    form.value.id = this.dog.id;
-    console.log(this.dog.id);
-    this.userService.editUserById(this.dog.id).subscribe(data => {
-      this.favouriteDogs = data;
-      console.log(this.favouriteDogs);
-    });
-  }
-
-  submit() {
-    if(this.btnStyle == 'btn-default') {
-      this.btnStyle = 'btn-change';
-    } 
+  deleteDogs(id: number): void{
+    this.dogService.deleteDog(id).subscribe();
   }
 
   addComment(form: NgForm): void{

@@ -17,19 +17,11 @@ const routes: Routes = [
       }
     ],
     canActivate: [AuthActivate],
-    data: {
-      authenticationRequired: true,
-      authenticationFailureRedirectUrl: '/login',
-    }
   },
   {
     path: 'dog-add',
     component: DogAddComponent,
     canActivate: [AuthActivate],
-    data: {
-      authenticationRequired: true,
-      authenticationFailureRedirectUrl: '/login',
-    }
   }
 
 ];

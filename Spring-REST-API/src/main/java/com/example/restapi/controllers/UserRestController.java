@@ -94,7 +94,7 @@ public class UserRestController {
      */
     @PutMapping("/users/{id}")
     public ResponseEntity<UserEntity> updateUser(
-            @PathVariable(value = "id") Long userId, @Valid @RequestBody int id)
+            @PathVariable(value = "id") Long userId)
             throws Exception {
 
         UserEntity user =
@@ -102,13 +102,16 @@ public class UserRestController {
                         .findById(userId)
                         .orElseThrow(() -> new Exception("User not found on :: " + userId));
 
-        Long idInLong = Long.parseLong(String.valueOf(id));
+//        Long idInLong = Long.parseLong(String.valueOf(id));
         DogEntity dog =
                 dogRepository
-                .findById(idInLong)
-                .orElseThrow(() -> new Exception("Dog not found on :: " + id));
+                .findById(Long.parseLong("1"))
+                .orElseThrow(() -> new Exception("Dog not found on :: " + "1"));
 
-        user.setFavouriteDogs(Set.of(dog));
+        Set<DogEntity> dogs = user.getFavouriteDogs();
+        dogs.add(dog);
+
+        user.setFavouriteDogs(dogs);
         final UserEntity updatedUser = userRepository.save(user);
         return ResponseEntity.ok(updatedUser);
     }

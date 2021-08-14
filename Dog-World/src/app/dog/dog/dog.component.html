@@ -13,10 +13,10 @@
                 Weight:
             </h2>
             <p>
-                {{dog.maleWeight}}
+                Male: {{dog.maleWeight}}
             </p> 
             <p>
-                {{dog.femaleWeight}}
+                Female: {{dog.femaleWeight}}
             </p>   
             <h2>
                 How long do they live?
@@ -24,9 +24,6 @@
             <p>
                 {{dog.life}}
             </p>   
-            <form #form="ngForm" (ngSubmit)="addToFavourite(form)">
-            <button [ngClass]="[btnStyle]" (click)="submit()">Add to favourite</button> 
-            </form>
             <button *ngIf="username == dog.username" (click)="deleteDog()"  class="delete">Delete</button> 
             <p style="font-weight: bolder;" *ngIf="dog.username != null">
                 Added by {{dog.username}}
@@ -34,36 +31,7 @@
     </section>
 </div>
 <div class="user-comments">
-    <h1>Comments</h1>
-    <!-- <section class="user-comment">
-        <div class="user-photo-container">
-            <img src="../../../assets/male user photo.png" alt="">
-        </div>
-        <div class="comment-container">
-            <h3>Yuliyan</h3>
-            <p>
-                Very smart and clean dog. I want it!
-            </p>
-            <p class="date">
-                Date: 27.07.2021:00:48h
-            </p>
-        </div>
-    </section>
-    <section class="user-comment">
-        <div class="user-photo-container">
-            <img src="../../../assets/Users-User-Female-icon.png" alt="">
-        </div>
-        <div class="comment-container">
-            <h3>Iliyana</h3>
-            <p>
-                So beautiful dog. I love it!
-            </p>
-            <p class="date">
-                Date: 27.07.2021:00:57h
-            </p>
-        </div>
-    </section> -->
-    
+    <h1>Comments</h1>   
     <section *ngFor="let comment of comments" >
         <div class="user-comment" *ngIf="comment.dog.breed == dog.breed">
         <div class="user-photo-container" *ngIf="comment.user.gender== 'Male'">

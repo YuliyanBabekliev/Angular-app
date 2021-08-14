@@ -4,7 +4,7 @@
       <img src="../../../assets/pngwing.com (2).png" alt="" />
     </a>
   </div>
-    <form #form="ngForm" *ngIf="!isSuccessful" (ngSubmit)="form.valid && onSubmit(form)">
+    <form #form="ngForm" *ngIf="!isLoggedIn" (ngSubmit)="form.valid && onSubmit(form)">
       <h1>Register</h1>
       <div>
       <label for="Username"><fa-icon [icon]="faUser"></fa-icon>Username</label>

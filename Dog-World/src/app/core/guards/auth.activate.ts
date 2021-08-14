@@ -10,7 +10,6 @@ export class AuthActivate implements CanActivate {
   constructor(private router: Router, private tokenService: TokenStorageService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> { 
-    const { authenticationRequired, authenticationFailureRedirectUrl } = route.data;
     if (!this.tokenService.getToken()) {
       alert('You have to login to see this page. You are redirected to login Page');
       

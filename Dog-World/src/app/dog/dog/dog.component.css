@@ -1,3 +1,4 @@
+
 .container{
     display: flex;
     width: 70%;
@@ -113,9 +114,6 @@ h3{
     border-radius: 15px;
 }
 
-.favourite:hover{
-    cursor: pointer;
-}
 
 .delete{
     background-color: red;
@@ -140,11 +138,6 @@ h3{
     }
 
     .delete{
-        width: 350px;
-        margin: 10px auto;
-    }
-
-    .favourite{
         width: 350px;
         margin: 10px auto;
     }

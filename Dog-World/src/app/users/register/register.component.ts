@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faLock, faEnvelope, faUser, faVenusMars } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { TokenStorageService } from 'src/app/services/token-storage/token-storage.service';
 import { IDog } from 'src/app/shared/interfaces/dog';
 import { Gender } from 'src/app/shared/interfaces/gender';
 @Component({
@@ -17,9 +18,11 @@ export class RegisterComponent implements OnInit {
   genderSelected!: string;
   gender: Gender[] | undefined;
   errorMessage = '';
+  isLoggedIn = this.tokenService.getToken();
 
   constructor(private authService: AuthService,
-    private router: Router) { }
+    private router: Router,
+    private tokenService: TokenStorageService) { }
 
   ngOnInit(): void {
     this.gender = [

@@ -33,7 +33,8 @@ public class DBInit implements CommandLineRunner {
 //        this.userService.seedUsers();
 //        this.commentService.seedComments();
 //      this.dogService.seedDogs();
-
+//        this.commentRestController.deleteComment(Long.parseLong("91"));
+//     this.userRestController.deleteUser(Long.parseLong("21"));
 
     }
 }
